@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Pribadi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: black;
+            color: #fff;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        header h1 .logo-img {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        nav ul li a:hover {
+            color: #38bdf8;
+        }
+
+        .hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://lh3.googleusercontent.com/pw/AP1GczNm3mSUsWMUZfRdB3TgRzzTVxFiC-VTrSYwgusWSSIUUF-C1ZFma-OA6vTzHUQXOO0xQoPDyofHfoPItK_xL0CPzmwMX_RWOSYlhRZfcpLF1tM0CZ3obgioQC70LtC4ez03AYvcpbJx1K26ur2YwtU4Tg=w1376-h768-s-no-gm?authuser=0');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center top;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero h3 {
+            font-size: 20px;
+            font-weight: normal;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .hero button {
+            padding: 12px 25px;
+            background: #38bdf8;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .hero button:hover {
+            background: #0284c7;
+        }
+
+        .section {
+            padding: 60px 50px;
+            text-align: center;
+        }
+
+        .section h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .section .subtitle {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #64748b;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px 16px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-card img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .skill-card .skill-name {
+            font-size: 14px;
+            font-weight: bold;
+            color: #1e293b;
+        }
+
+        #Portofolio {
+            background: #f8fafc;
+        }
+
+        .portofolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .porto-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .porto-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .porto-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .porto-card .porto-info {
+            padding: 20px;
+            text-align: left;
+        }
+
+        .porto-card .porto-info h4 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .porto-card .porto-info p {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .porto-card .btn-porto {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #38bdf8;
+            color: #fff;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .porto-card .btn-porto:hover {
+            background: #0284c7;
+        }
+
+        #CTA {
+            background: linear-gradient(135deg, black);
+            color: #fff;
+        }
+
+        .cta-content {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .cta-content h3 {
+            color: #fff;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .cta-content .subtitle {
+            color: #94a3b8;
+            margin-bottom: 32px;
+        }
+
+        .cta-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .cta-icons a:hover {
+            background: #38bdf8;
+            transform: translateY(-4px);
+        }
+
+        .cta-icons a img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        footer {
+            background: black;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 0;
+        }
+
+        @media (max-width: 1024px) {
+            header {
+                padding: 16px 30px;
+            }
+
+            .section {
+                padding: 50px 30px;
+            }
+
+            .hero h2 {
+                font-size: 36px;
+            }
+
+            .hero h3 {
+                font-size: 17px;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 900px;
+            }
+
+            .portofolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 14px 20px;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            header h1 {
+                font-size: 20px;
+            }
+
+            nav ul {
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin-left: 12px;
+                margin-bottom: 4px;
+            }
+
+            nav ul li a {
+                font-size: 13px;
+            }
+
+            .hero {
+                height: 40vh;
+            }
+
+            .hero h2 {
+                font-size: 28px;
+                margin-bottom: 10px;
+            }
+
+            .hero h3 {
+                font-size: 15px;
+            }
+
+            .section {
+                padding: 40px 20px;
+            }
+
+            .section h3 {
+                font-size: 22px;
+            }
+
+            .section .subtitle {
+                font-size: 14px;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 100%;
+                gap: 16px;
+            }
+
+            .portofolio-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .porto-card img {
+                height: 180px;
+            }
+
+            .cta-content {
+                max-width: 100%;
+            }
+
+            .cta-icons a {
+                width: 50px;
+                height: 50px;
+            }
+
+            .cta-icons a img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 12px 16px;
+            }
+
+            header h1 {
+                font-size: 18px;
+            }
+
+            header h1 .logo-img {
+                height: 26px;
+            }
+
+            nav ul li {
+                margin-left: 8px;
+            }
+
+            nav ul li a {
+                font-size: 12px;
+            }
+
+            .hero {
+                height: 35vh;
+            }
+
+            .hero h2 {
+                font-size: 22px;
+            }
+
+            .hero h3 {
+                font-size: 13px;
+            }
+
+            .section {
+                padding: 30px 16px;
+            }
+
+            .section h3 {
+                font-size: 20px;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .skill-card {
+                padding: 14px 10px;
+            }
+
+            .skill-card img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .skill-card .skill-name {
+                font-size: 12px;
+            }
+
+            .portofolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .porto-card img {
+                height: 150px;
+            }
+
+            .porto-card .porto-info {
+                padding: 16px;
+            }
+
+            .porto-card .porto-info h4 {
+                font-size: 16px;
+            }
+
+            .porto-card .porto-info p {
+                font-size: 13px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-icons {
+                gap: 14px;
+            }
+
+            .cta-icons a {
+                width: 46px;
+                height: 46px;
+            }
+
+            .cta-icons a img {
+                width: 22px;
+                height: 22px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczPxM-_CEtjrYYbrnn7G-9WKyF0Yxu7ZzmI-jLQscV4RdM6TGbeuBZisMyQZeUa62YjBJBWe2gpMCeyXCN1YRFVrfzOvIJUnsChkcXHSHLhtwT3UnXq0jSdiji8h2UlPap-w9KbDYxUIpbrVeVGTM5vVuw=w657-h827-s-no-gm?authuser=0" class="logo-img">
+            Aji Setyo Nugroho
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="#About Me">About Me</a></li>
+                <li><a href="#Skils">Skils</a></li>
+                <li><a href="#Portofolio">Portofolio</a></li>
+                <li><a href="#Achievements And Activities">Achievements And Activities</a></li>
+                <li><a href="#CTA">CTA</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Aji Setyo Nugroho</h2>
+        <h3>SMKN 4 Malang, X RPL C</h3>
+    </section>
+
+    <section class="section" id="About Me">
+        <h3>About Me</h3>
+        <p class="subtitle">Berisi tentang sikap dan sifat serta kehidupan saya</p>
+        <div class="cards">
+            <div class="card"> 1.Saya adalah orang yang baik dan saling membantu</div>
+            <div class="card"> 2.Saya sangat menyukai bidang RPL</div>
+            <div class="card"> 3.Saya selalu mengumpulkan tugas tepat waktu</div>
+        </div>
+    </section>
+
+    <section class="section" id="Skils">
+    <h3>Skills</h3>
+    <p class="subtitle">Berisi tentang kemampuan saya dalam bidang pemrograman</p>
+    <div class="skills-grid">
+
+        <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg">
+            <div class="skill-name">HTML</div>
+        </div>
+
+        <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg">
+            <div class="skill-name">CSS</div>
+        </div>
+
+        <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">
+            <div class="skill-name">JavaScript</div>
+        </div>
+
+        <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">
+            <div class="skill-name">Python</div>
+        </div>
+
+        <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg">
+            <div class="skill-name">Figma</div>
+        </div>
+
+        <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg">
+            <div class="skill-name">Bootstarp</div>
+        </div>
+
+    </div>
+    </section>
+
+    <section class="section" id="Portofolio">
+    <h3>Portofolio</h3>
+    <p class="subtitle">Berisi tentang beberapa projek yang sudah saya kerjakan</p>
+    <div class="portofolio-grid">
+
+        <div class="porto-card">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczPmeTUhguon9Rnq6NlYmro9sBDlSw1W4-7m22A721V5zkrErO3EK-ZGGTNHdJEMQKZXOI9oBSecY4IG8-k52UyOyqUE8xbsLvS0Ax_H21BZV1MknaR2B7z-SIp7Qy5uCEn3mj3PPd621As1-3qp3Si2Kg=w1031-h591-s-no-gm?authuser=0">
+            <div class="porto-info">
+                <h4>UI Dan UX Website BagMade.ID </h4>
+                <p>Tampilan dalam figma berbentuk website Bagmade.ID</p>
+                <a href="https://www.figma.com/design/1HlPIcScb7uXalxPPG1pvh/Online-shop-tas-handmade?node-id=4-8&t=cy9Ch5It5dH4jwnv-1" class="btn-porto">Lihat Selengkapnya</a>
+            </div>
+        </div>
+
+        <div class="porto-card">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczPFDUVicaIf_9S52Dq_8TKWC7Bix6Dhnql8vNQseHnFRpgACLruIhz9OolxLm7IV0jHZ2E8TG_Geop_gDIKe-g51e8XRYOAlCEEvwQ2PaLA1q8mo9yHh0nrw-VAgborWLEyoQbnXMu1_EH5zgJnzNlglA=w939-h612-s-no-gm?authuser=0">
+            <div class="porto-info">
+                <h4>UI Dan UX Mobile BagMade.ID</h4>
+                <p>Tampilan dalam figma berbentuk mobile Bagmade.ID</p>
+                <a href="https://www.figma.com/design/1HlPIcScb7uXalxPPG1pvh/Online-shop-tas-handmade?node-id=0-1&t=cy9Ch5It5dH4jwnv-1" class="btn-porto">Lihat Selengkapnya</a>
+            </div>
+        </div>
+
+        <div class="porto-card">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczNYuqW6oLUy9TsZZINH2uYAhMLlqpPMSM8BqBzQIVnkIY1EQ5lRaiudUhhaky4ccwakXymS61gU7d611YfeTkQk-V7eYa2gaJchhEYzfF-M3l4PFHo7pym_pEOR8QgjdA3eUT745pYSiGWpTjIjyryHuw=w1559-h818-s-no-gm?authuser=0">
+            <div class="porto-info">
+                <h4>Website Jual Beli</h4>
+                <p>Website JB pada game Roblox GAG 2</p>
+                <a href="https://home-two-drab.vercel.app" class="btn-porto">Lihat Selengkapnya</a>
+            </div>
+        </div>
+
+        <div class="porto-card">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczPx1hbZRI9Yfw7B3vnIOPVMEBvkL6x351HTawe7XtvgVNU4hzJTwDRSt8UU0qbwcQqghgSp9gOHWzTcdqpQgE-p4u7-7If47JOpj5NiWdivUmdoUokff5CrR2vLt3nM3O7mcjr9XAzId8-ynHIc0gI4Hw=w1374-h813-s-no-gm?authuser=0">
+            <div class="porto-info">
+                <h4>Website Coding.ID</h4>
+                <p> Landing page website Coding.ID</p>
+                <a href="https://codingid.vercel.app/" class="btn-porto">Lihat Selengkapnya</a>
+            </div>
+        </div>
+
+    </div>
+    </section>
+
+    <section class="section" id="Achievements And Activities">
+    <h3>Achievements And Activities</h3>
+    <p class="subtitle">Berisi tentang kegiatan dan peghargaan yang telah saya dapatkan</p>
+    <div class="portofolio-grid">
+
+        <div class="porto-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBPG6rJs8PdY87Phs2Zn6U6tZX7sHgSm5vgFouDwsigQ&s=10">
+            <div class="porto-info">
+                <h4>Organisasi Al-banjari</h4>
+                <p>Pernah mengikuti organisasi Al-banjari selama 3 tahun di SMPN 30 Malang</p>
+            </div>
+        </div>
+
+        <div class="porto-card">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczOk8t4MappLrcE2MNXOF7Hdla6Ow_c8rO8jIxY4SFSTn0CLcA0PvX2-9cVjASf5wnKSpOobP7OmppZrrhE0TvtdroPNogXHeFiyEWpT8loPuNmQ2ph5cH1DYAx7jDe1ausoqwEiYp9-91hmP21rnzX43w=w1245-h827-s-no-gm?authuser=0">
+            <div class="porto-info">
+                <h4>Lomba esport</h4>
+                <p>Pernah mengikuti lomba esport Mobile Legends tingkat provinsi</p>
+            </div>
+        </div>
+        </div>
+        </section>
+
+        <section class="section" id="CTA">
+    <div class="cta-content">
+        <h3>Hubungi Saya</h3>
+        <p class="subtitle">Jika tertarik bekerja sama dengan saya, hubungi saya melalui media sosial di bawah ini.</p>
+        <div class="cta-icons">
+
+            <a href="https://wa.me/6285780476538" target="_blank">
+                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg">
+            </a>
+
+            <a href="https://www.instagram.com/ajisetyonugroho15?rpxt=dTBxb3EwYnc4c2c2" target="_blank">
+                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg">
+            </a>
+
+            <a href="https://www.tiktok.com/@ajisetyonugroho3444?_r=1&_t=ZS-9AowJOGKFmO" target="_blank">
+                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg">
+            </a>
+
+            <a href="https://facebook.com/ajisetyonugroho" target="_blank">
+                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg">
+            </a>
+
+        </div>
+    </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Coding.ID. Seluruh hak cipta dilindungi.</p>
+    </footer>
+</body>
+</html>
